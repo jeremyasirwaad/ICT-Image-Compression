@@ -1,3 +1,5 @@
+#include<fstream>
+#include<sstream>
 #include <iostream>
 #include <string>
 #include <queue>
@@ -104,7 +106,7 @@ void buildHuffmanTree(string text)
          << text << endl;
     cout << "The Length of the Original text = " << text.length() << endl;
     int beforecompression = text.length() * 8;
-    cout << "In bytes = " << text.length() * 8 << endl;
+    cout << "In bits = " << text.length() * 8 << endl;
 
     string str;
     for (char ch : text)
@@ -132,8 +134,16 @@ int main()
 {
     cout << "ICT Project by Jeremy & Joel" << endl;
     cout << "____________________________________" << endl;
-    string text = "Hello";
-    buildHuffmanTree(text);
-
+    // string text = "Hello";
+    // buildHuffmanTree(text);
+    ifstream f("new.txt"); //taking file as inputstream
+   string str;
+   if(f) {
+      ostringstream ss;
+      ss << f.rdbuf(); // reading data
+      str = ss.str();
+   }
+//    cout<<str;
+    buildHuffmanTree(str);
     return 0;
 }
